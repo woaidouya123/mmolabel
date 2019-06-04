@@ -1,0 +1,23 @@
+{
+  "name": "mmolabel",
+  "version": "1.0.0",
+  "description": "This is a to-do app designed by React.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woaidouya123/mmolabel.git"
+  },
+  "keywords": [
+    "to-do",
+    "react"
+  ],
+  "author": "caifei",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/woaidouya123/mmolabel/issues"
+  },
+  "homepage": "https://github.com/woaidouya123/mmolabel#readme"
+}
