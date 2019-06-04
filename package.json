@@ -4,7 +4,7 @@
   "description": "This is a to-do app designed by React.",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "start": "webpack-dev-server --mode development"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,22 @@
   "bugs": {
     "url": "https://github.com/woaidouya123/mmolabel/issues"
   },
-  "homepage": "https://github.com/woaidouya123/mmolabel#readme"
+  "homepage": "https://github.com/woaidouya123/mmolabel#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^2.1.1",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.5.1"
+  },
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-hot-loader": "^4.9.0"
+  }
 }
