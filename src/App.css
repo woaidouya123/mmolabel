@@ -3,15 +3,11 @@
     height: 100vh;
     background-image: url("../public/bg.jpg")
 }
-
-.plus-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 60px;
-    height: 60px;
+.plus-div{
+    float: right;
+    margin-right: 20px;
+    text-align: right;
 }
-
 .plus-button img{
     width: 50px;
     height: 50px;
@@ -38,36 +34,42 @@
     100%{-webkit-transform: rotate(360deg)}
 }
 
-.plus-button ul{
+.plus-button + ul{
     list-style: none;
-    float: right;
+    padding: 1em 0;
+    margin: 0px;
 }
-.plus-button ul li{
+.plus-button + ul li{
     padding: 0.8em 1em;
-    margin: 1em 0;
     border-radius: 1em;
     background: white;
     color: deepskyblue;
     text-align: center;
     display: none;
     opacity: 0;
+    cursor: pointer;
+    margin-bottom: 1em;
 }
-.plus-button:hover  ul li{
+.plus-div ul:hover li{
+    display: block;
+    opacity: 1;
+}
+.plus-button:hover + ul li{
     display: block;
 }
-.plus-button img:hover + ul li:first-child{
+.plus-button:hover + ul li:first-child{
     animation: listAnmiation 0.5s ease-in-out forwards;
     animation-delay: 0.5s;
 }
-.plus-button img:hover + ul li:nth-child(2){
+.plus-button:hover + ul li:nth-child(2){
     animation: listAnmiation 0.5s ease-in-out forwards;
     animation-delay: 1s;
 }
-.plus-button img:hover + ul li:nth-child(3){
+.plus-button:hover + ul li:nth-child(3){
     animation: listAnmiation 0.5s ease-in-out forwards;
     animation-delay: 1.5s;
 }
-.plus-button img:hover + ul li:nth-child(4){
+.plus-button:hover + ul li:nth-child(4){
     animation: listAnmiation 0.5s ease-in-out forwards;
     animation-delay: 2s;
 }
