@@ -9,9 +9,6 @@ class BgCanvas extends Component {
             <div className="canvas-div">
                 <canvas>您的浏览器不支持canvas</canvas>
             </div>
-
-
-
         );
     };
 }
