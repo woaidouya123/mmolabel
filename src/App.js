@@ -12,6 +12,7 @@ class App extends Component {
                 <BgCanvas />
                 <PlusButton />
                 <NormalMMo message="hello" />
+                <NormalMMo message="world" />
             </div>
         );
     }
