@@ -8,11 +8,11 @@ class PlusButton extends Component {
     render() {
         return (
             <div className="plus-div">
-                <div className="plus-button" onClick={this.addMMO}>
+                <div className="plus-button" >
                     <img src={require("../public/plus.png")} />
                 </div><ul>
                     <li>Circle</li>
-                    <li>Rectangle</li>
+                    <li onClick={this.addMMO}>Rectangle</li>
                     <li>Star</li>
                     <li>DIY</li>
                 </ul>
@@ -23,7 +23,7 @@ class PlusButton extends Component {
         );
     };
     addMMO() {
-
+        this.props.addMethod();
     }
 }
 module.exports = PlusButton;
