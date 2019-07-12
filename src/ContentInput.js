@@ -9,21 +9,24 @@ class ContentInput extends Component {
             value:""
         }
     }
+    componentDidMount(){
+        document.getElementById("content-input").focus();
+    }
     render() {
         return (
             <div className="content-div">
                 <div className="input-div">
-                    <input type="text" maxLength="30" value={this.state.value} onChange={this.handleChange} />
+                    <input id="content-input" type="text" placeholder="请输入标签内容" maxLength="30" value={this.state.value} onChange={this.handleChange} />
                     <span onClick={this.addContent}>确认</span>
                 </div>
             </div>
         );
     };
     addContent() {
-        this.props.addContent();
+        this.props.addContent(this.state.value);
     }
     handleChange(event) {
         this.setState({value:event.target.value})
     }
 }
-module.exports = PlusButton;
+module.exports = ContentInput;

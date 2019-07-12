@@ -12,7 +12,7 @@ class PlusButton extends Component {
                     <img src={require("../public/plus.png")} />
                 </div><ul>
                     <li>Circle</li>
-                    <li onClick={this.addMMO}>Rectangle</li>
+                    <li onClick={this.addMMO.bind(this,"normal")}>Rectangle</li>
                     <li>Star</li>
                     <li>DIY</li>
                 </ul>
@@ -22,8 +22,8 @@ class PlusButton extends Component {
 
         );
     };
-    addMMO() {
-        this.props.addMethod();
+    addMMO(msg) {
+        this.props.addMethod(msg);
     }
 }
 module.exports = PlusButton;
