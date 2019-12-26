@@ -4,6 +4,7 @@ import PlusButton from './PlusButton.js';
 import BgCanvas from './BgCanvas.js';
 import ContentInput from './ContentInput.js';
 import NormalMMo from './mmo/normalMMO.js';
+import axios from 'axios';
 import "./App.css";
 
 class App extends Component {
@@ -17,9 +18,18 @@ class App extends Component {
             "addType":""
         }
     }
+    componentDidMount(){
+        var self = this;
+        axios.post("/api/queryAll",{})
+        .then(function(res){
+            self.setState({normalList:res.data})
+        }).catch(function(err){
+            console.log(err);
+        })
+    }
     render() {
         const mmoList = this.state.normalList.map((item,index)=>
-            <NormalMMo key={index} message={item} />
+            <NormalMMo key={index} message={item.content} />
         )
         return (
             <div className="App">
@@ -42,7 +52,9 @@ class App extends Component {
         switch(this.state.addType){
             case 'normal':
                 let data = [...this.state.normalList];
-                data.push(msg);
+                data.push({
+                    "content":msg
+                });
                 this.setState({normalList:data});
                 break;
             default:

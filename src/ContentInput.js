@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 
 class ContentInput extends Component {
     constructor(props) {
@@ -23,7 +24,15 @@ class ContentInput extends Component {
         );
     };
     addContent() {
-        this.props.addContent(this.state.value);
+        var self = this;
+        axios.post("/api/addLabel",{
+            "content":self.state.value
+        }).then(function(res){
+            self.props.addContent(self.state.value);
+        }).catch(function(err){
+            console.log(err);
+        })
+        
     }
     handleChange(event) {
         this.setState({value:event.target.value})
