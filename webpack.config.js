@@ -29,11 +29,18 @@ module.exports = {
     publicPath: "/dist/",
     filename: "bundle.js"
   },
-  // devServer: {
-  //   contentBase: path.join(__dirname, "public"),
-  //   port: 3000,
-  //   publicPath: "http://localhost:3000/dist/",
-  //   hotOnly: true
-  // },
+  devServer: {
+    contentBase: path.join(__dirname, "public"),
+    port: 3000,
+    publicPath: "http://localhost:3000/dist/",
+    hotOnly: true,
+    proxy: {
+      '/api':{
+          target:"http://localhost:8080",
+          changeOrigin: true,
+          logLevel:'debug'
+      }
+    }
+  },
   plugins:[new webpack.HotModuleReplacementPlugin()]
 };

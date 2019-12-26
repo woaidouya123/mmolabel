@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/api',router);
 
-var port = process.env.PORT || 8080;
+var port = 8080;
 MongoDB.connect();
 
 app.listen(port, function (err) {
