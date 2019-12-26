@@ -1,21 +1,27 @@
 import React, { Component } from "react";
-
+import axios from 'axios';
 class NormalMMo extends Component {
     constructor(props) {
         super(props);
         this.mousedown = this.mousedown.bind(this);
         this.mousemove = this.mousemove.bind(this);
         this.mouseup = this.mouseup.bind(this);
+        this.mouseout = this.mouseout.bind(this);
+        this.setLablePos = this.setLablePos.bind(this);
         this.state = {
             "isDraging" : false,
-            "startX":0,
-            "startY":0
+            "startX":props.info.x,
+            "startY":props.info.y,
+            "_id":props.info._id,
+            
         }
+        this.style ={left:this.state.startX + "px",top:this.state.startY + "px"}
     }
     render() {
         return (
-            <div className="normal-div" onMouseDown={this.mousedown} onMouseMove={this.mousemove} onMouseUp={this.mouseup}>
-                <span>{this.props.message}</span>
+            <div style={this.style} className="normal-div" onMouseDown={this.mousedown} onMouseMove={this.mousemove} 
+            onMouseUp={this.mouseup} onMouseOut={this.mouseout}>
+                <span>{this.props.info.content}</span>
                 <label>
                     <input type="checkbox" style={{display:"none"}} />
                     <span className="finish-button"></span>
@@ -47,7 +53,28 @@ class NormalMMo extends Component {
         }
     }
     mouseup(event) {
+        this.state.startX = event.target.offsetLeft+"";
+        this.state.startY = event.target.offsetTop+"";
         this.setState({isDraging:false});
+        this.setLablePos();
+    }
+    mouseout(event) {
+        this.state.startX = event.target.offsetLeft+"";
+        this.state.startY = event.target.offsetTop+"";
+        this.setState({isDraging:false});
+        this.setLablePos();
+    }
+    setLablePos(){
+        var self = this;
+        axios.post("/api/changePos",{
+            "_id":self.state._id,
+            "x":self.state.startX,
+            "y":self.state.startY
+        }).then(function(res){
+            console.log("修改成功");
+        }).catch(function(err){
+            console.log(err);
+        })
     }
 }
 module.exports = NormalMMo;

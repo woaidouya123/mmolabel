@@ -18,7 +18,7 @@ class App extends Component {
             "addType":""
         }
     }
-    componentDidMount(){
+    getAllLabels(){
         var self = this;
         axios.post("/api/queryAll",{})
         .then(function(res){
@@ -27,9 +27,12 @@ class App extends Component {
             console.log(err);
         })
     }
+    componentDidMount(){
+        this.getAllLabels();
+    }
     render() {
         const mmoList = this.state.normalList.map((item,index)=>
-            <NormalMMo key={index} message={item.content} />
+            <NormalMMo key={index} info={item} />
         )
         return (
             <div className="App">
@@ -51,11 +54,7 @@ class App extends Component {
         this.setState({"inputVisible":false});
         switch(this.state.addType){
             case 'normal':
-                let data = [...this.state.normalList];
-                data.push({
-                    "content":msg
-                });
-                this.setState({normalList:data});
+                this.getAllLabels();
                 break;
             default:
                 break;
