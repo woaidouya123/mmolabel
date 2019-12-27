@@ -6,8 +6,6 @@ class NormalMMo extends Component {
         this.mousedown = this.mousedown.bind(this);
         this.mousemove = this.mousemove.bind(this);
         this.mouseup = this.mouseup.bind(this);
-        this.mouseout = this.mouseout.bind(this);
-        this.setLablePos = this.setLablePos.bind(this);
         this.state = {
             "isDraging" : false,
             "startX":props.info.x,
@@ -20,7 +18,7 @@ class NormalMMo extends Component {
     render() {
         return (
             <div style={this.style} className="normal-div" onMouseDown={this.mousedown} onMouseMove={this.mousemove} 
-            onMouseUp={this.mouseup} onMouseOut={this.mouseout}>
+            onMouseUp={this.mouseup} onMouseLeave={this.mouseup}>
                 <span>{this.props.info.content}</span>
                 <label>
                     <input type="checkbox" style={{display:"none"}} />
@@ -53,28 +51,18 @@ class NormalMMo extends Component {
         }
     }
     mouseup(event) {
-        this.state.startX = event.target.offsetLeft+"";
-        this.state.startY = event.target.offsetTop+"";
-        this.setState({isDraging:false});
-        this.setLablePos();
+        if(this.state.isDraging){
+            this.state.startX = event.target.offsetLeft+"";
+            this.state.startY = event.target.offsetTop+"";
+            this.setState({isDraging:false});
+            this.props.changePos({
+                "_id":this.state._id,
+                "x":this.state.startX,
+                "y":this.state.startY
+            });
+        }
+        
     }
-    mouseout(event) {
-        this.state.startX = event.target.offsetLeft+"";
-        this.state.startY = event.target.offsetTop+"";
-        this.setState({isDraging:false});
-        this.setLablePos();
-    }
-    setLablePos(){
-        var self = this;
-        axios.post("/api/changePos",{
-            "_id":self.state._id,
-            "x":self.state.startX,
-            "y":self.state.startY
-        }).then(function(res){
-            console.log("修改成功");
-        }).catch(function(err){
-            console.log(err);
-        })
-    }
+    
 }
 module.exports = NormalMMo;
