@@ -1,7 +1,9 @@
 .App {
     width: 100%;
     height: 100vh;
-    background-image: url("../public/bg.jpg")
+    background-image: url("../public/bg.jpg");
+    z-index: -10;
+    position: absolute;
 }
 .plus-div{
     float: right;
@@ -107,7 +109,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: 0;
 }
 .canvas-div canvas{
     width: 100%;
@@ -219,4 +221,85 @@
     color: white;
     border-radius: 5px;
     cursor: pointer;
+}
+
+/* papermmo */
+.label-paper {
+    width: 200px;
+    height: 25px;
+    line-height: 25px;
+    background: yellowgreen;
+    color: white;
+    position: absolute;
+    transition: height 2s;
+    border-radius: 5px;
+}
+
+.label-paper>span {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    -webkit-user-select:none;
+   -moz-user-select:none;
+   -ms-user-select:none;
+   user-select:none;
+   margin: 0 5px;
+}
+
+.label-paper:hover {
+    height: fit-content;
+}
+
+.label-paper:hover>span {
+    white-space: normal;
+}
+
+.label-paper::before {
+    content: "";
+    display: block;
+    width: 200px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: rotateZ(-5deg);
+    background-color: darkgray;
+    box-shadow: 0 0 5px 2px grey;
+    z-index: -1;
+    border-radius: 5px;
+}
+
+.label-paper .op {
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.2s;
+}
+
+.label-paper:hover .op {
+    height: 25px;
+}
+
+.label-paper .op button {
+    outline: none;
+    border: none;
+    color: white;
+    padding: 0px;
+    float: right;
+    width: 25px;
+    height: 25px;
+    background-color: gray;
+    cursor: pointer;
+}
+
+.label-paper .op button.move {
+    float: left;
+    cursor: move;
+}
+.label-paper .op button.delete:hover {
+    background-color: red;
+}
+
+.label-paper .op button.finish:hover {
+    background-color: green;
 }

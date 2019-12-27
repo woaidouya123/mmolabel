@@ -5,7 +5,8 @@ var LabelSchema = new Schema({
     content: { type: String, trim: true },
     x:String,
     y:String,
-    Lid:Number
+    Lid:Number,
+    type:String
 })
 
 module.exports = mongoose.model('label', LabelSchema);

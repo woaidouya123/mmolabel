@@ -11,9 +11,8 @@ class PlusButton extends Component {
                 <div className="plus-button" >
                     <img src={require("../public/plus.png")} />
                 </div><ul>
-                    <li>Circle</li>
                     <li onClick={this.addMMO.bind(this,"normal")}>Rectangle</li>
-                    <li>Star</li>
+                    <li onClick={this.addMMO.bind(this,"paper")}>Paper</li>
                     <li>DIY</li>
                 </ul>
             </div>

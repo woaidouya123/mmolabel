@@ -16,6 +16,7 @@ router.route('/addLabel')
         label.content = req.body.content;
         label.x = "0";
         label.y = "0";
+        label.type=req.body.type;
         label.save(function(err) {
             if (err)
                 res.send(err);

@@ -24,15 +24,7 @@ class ContentInput extends Component {
         );
     };
     addContent() {
-        var self = this;
-        axios.post("/api/addLabel",{
-            "content":self.state.value
-        }).then(function(res){
-            self.props.addContent(self.state.value);
-        }).catch(function(err){
-            console.log(err);
-        })
-        
+        this.props.addContent(this.state.value);
     }
     handleChange(event) {
         this.setState({value:event.target.value})
