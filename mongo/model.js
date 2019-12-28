@@ -6,7 +6,15 @@ var LabelSchema = new Schema({
     x:String,
     y:String,
     Lid:Number,
-    type:String
+    type:String,
+    status:String
+})
+var BgCanvasSchema = new Schema({
+    base64: String,
+    userId:String
 })
 
-module.exports = mongoose.model('label', LabelSchema);
+module.exports = {
+    Label:mongoose.model('label', LabelSchema),
+    BgCanvas:mongoose.model('bg', BgCanvasSchema)
+}

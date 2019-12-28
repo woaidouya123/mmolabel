@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import axios from 'axios';
 class NormalMMo extends Component {
     constructor(props) {
         super(props);
         this.mousedown = this.mousedown.bind(this);
         this.mousemove = this.mousemove.bind(this);
         this.mouseup = this.mouseup.bind(this);
+        this.labelFinish = this.labelFinish.bind(this);
+        this.finishAnimation = this.finishAnimation.bind(this);
         this.state = {
             "isDraging" : false,
             "startX":props.info.x,
@@ -18,12 +19,14 @@ class NormalMMo extends Component {
     render() {
         return (
             <div style={this.style} className="label-paper" >
-                <span>{this.props.info.content}</span>
+                <div className="paper-content" onAnimationEnd={this.labelFinish}>
+                    <span>{this.props.info.content}</span>
+                </div>
                 <div className="op">
                     <button className="move" onMouseDown={this.mousedown} onMouseMove={this.mousemove} 
             onMouseUp={this.mouseup} onMouseLeave={this.mouseup} dangerouslySetInnerHTML={{__html: '&#10021'}}></button>
-                    <button className="finish" dangerouslySetInnerHTML={{__html: '&#10004'}}></button>
-                    <button className="delete" dangerouslySetInnerHTML={{__html: '&#10006'}}></button>
+                    <button className="finish" onClick={this.finishAnimation} dangerouslySetInnerHTML={{__html: '&#10004'}}></button>
+                    <button className="delete" onClick={this.props.deleteLabel} dangerouslySetInnerHTML={{__html: '&#10006'}}></button>
                 </div>
             </div>
         );
@@ -63,6 +66,33 @@ class NormalMMo extends Component {
             });
         }
         
+    }
+
+    // 完成
+    labelFinish(event) {
+        var ev = event || window.event;
+        var target = ev.target || ev.srcElement;
+        target.style.animation = "";
+        target.style.transform="rotateZ(-5deg)";
+        target.style["background-color"]="darkgray";
+        target.style["border-radius"] = "5px";
+        var self = this;
+        var st = setTimeout(function(){
+            self.props.finishIt(target,self.state._id);
+            clearTimeout(st);
+        },500)
+        
+    }
+
+    // 添加完成动画
+    finishAnimation(event) {
+        var ev = event || window.event;
+        var target = ev.target || ev.srcElement;
+        var note = target.parentNode.previousSibling;
+        note.style.height = note.scrollHeight + "px";
+        note.children[0].style["white-space"] = "normal";
+        target.parentNode.previousSibling.style.animation = "paper-save 1s linear";
+        target.parentNode.style.height = "0px";
     }
 }
 module.exports = NormalMMo;

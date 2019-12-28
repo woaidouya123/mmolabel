@@ -17,14 +17,14 @@ class ContentInput extends Component {
         return (
             <div className="content-div">
                 <div className="input-div">
-                    <input id="content-input" type="text" placeholder="请输入标签内容" maxLength="30" value={this.state.value} onChange={this.handleChange} />
+                    <input id="content-input" type="text" placeholder="请输入标签内容" maxLength="50" value={this.state.value} onChange={this.handleChange} />
                     <span onClick={this.addContent}>确认</span>
                 </div>
             </div>
         );
     };
     addContent() {
-        this.props.addContent(this.state.value);
+        this.state.value&&this.props.addContent(this.state.value);
     }
     handleChange(event) {
         this.setState({value:event.target.value})
