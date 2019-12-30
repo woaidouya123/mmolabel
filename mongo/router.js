@@ -69,7 +69,7 @@ router.route('/changeStatus')
 router.route('/saveBgCanvas')
     .post(function(req, res) {
         var bgCanvas = new BgCanvas();
-        bgCanvas.userId="1";
+        bgCanvas.userId=req.session.userId;
         bgCanvas.base64=req.body.base64;
         bgCanvas.save(function(err) {
             if (err)
@@ -83,7 +83,7 @@ router.route('/saveBgCanvas')
 router.route('/updateBgCanvas')
     .post(function(req, res) {
         BgCanvas.update({
-            "userId":"1",
+            "userId":req.session.userId,
             "base64":req.body.base64
         },function(err) {
             if (err)
@@ -96,7 +96,7 @@ router.route('/updateBgCanvas')
     })
 router.route('/getBgCanvas')
     .post(function(req, res) {
-        BgCanvas.findOne({userId:"1"},function(err, bg) {
+        BgCanvas.findOne({userId:req.session.userId},function(err, bg) {
             if (err)
                 res.send(err);
             res.json(bg);

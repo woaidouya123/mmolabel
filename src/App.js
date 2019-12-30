@@ -1,13 +1,15 @@
 import React,{Component} from "react";
 import {hot} from "react-hot-loader";
 import PlusButton from './PlusButton.js';
-import BgCanvas from './BgCanvas.js';
 import ContentInput from './ContentInput.js';
 import NormalMMo from './mmo/normalMMO.js';
 import PaperMMo from './mmo/paperMMO.js';
 import axios from 'axios';
 import html2canvas from 'html2canvas';
+import 'antd/dist/antd.css';
 import "./App.css";
+import { message } from 'antd';
+
 
 class App extends Component {
     constructor(props){
@@ -38,9 +40,20 @@ class App extends Component {
     componentDidMount(){
         this.getAllLabels();
         var canvas = document.querySelector(".canvas-div").children[0];
+        var self = this;
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        this.getBgCanvas();
+        axios.post("/login",{
+            userId:"1"
+        }).then(function(res){
+            message.info(res.data);
+            self.getBgCanvas();
+        }).catch(function(err){
+            console.error(err);
+        })
+        // this.getBgCanvas();
+
+        
     }
     render() {
         var self = this;
