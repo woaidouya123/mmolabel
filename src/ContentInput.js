@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import axios from 'axios';
+import { Input,Button } from 'antd';
+const { TextArea } = Input;
 
 class ContentInput extends Component {
     constructor(props) {
@@ -17,8 +18,8 @@ class ContentInput extends Component {
         return (
             <div className="content-div">
                 <div className="input-div">
-                    <input id="content-input" type="text" placeholder="请输入标签内容" maxLength="50" value={this.state.value} onChange={this.handleChange} />
-                    <span onClick={this.addContent}>确认</span>
+                    <TextArea id="content-input" type="text" placeholder="请输入标签内容" value={this.state.value} onChange={this.handleChange} rows={4} />
+                    <Button type="primary" onClick={this.addContent}>确认</Button>
                 </div>
             </div>
         );
