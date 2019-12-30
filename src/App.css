@@ -2,7 +2,7 @@
     width: 100%;
     height: 100vh;
     background-image: url("../public/bg.jpg");
-    z-index: -10;
+    z-index: 10;
     position: absolute;
 }
 .plus-div{
@@ -199,7 +199,15 @@
     align-items: center;
     background: rgba(128,128,128,0.3);
 }
-.input-div input{
+.content-div .input-div{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    width: 500px;
+    height: 300px;
+}
+/* .input-div input{
     font-size: 16px;
     height: 35px;
     width: 300px;
@@ -221,11 +229,11 @@
     color: white;
     border-radius: 5px;
     cursor: pointer;
-}
+} */
 
 /* papermmo */
 .label-paper {
-    width: 200px;
+    width: fit-content;
     position: absolute;
     border-radius: 5px;
     background-color: transparent;
@@ -245,13 +253,15 @@
 }
 
 .label-paper:hover> div.paper-content > span {
-    white-space: normal;
+    white-space: pre;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 .label-paper::before {
     content: "";
     display: block;
-    width: 200px;
+    width: 100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -263,7 +273,8 @@
     border-radius: 5px;
 }
 .label-paper div.paper-content{
-    width: 100%;
+    max-width: 200px;
+    width: fit-content;
     height: 25px;
     line-height: 25px;
     background-color: yellowgreen;
@@ -272,6 +283,8 @@
 }
 .label-paper:hover div.paper-content{
     height: fit-content;
+    max-width: 500px;
+    min-width: 200px;
 }
 
 .label-paper .op {

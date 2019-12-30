@@ -90,7 +90,8 @@ class NormalMMo extends Component {
         var target = ev.target || ev.srcElement;
         var note = target.parentNode.previousSibling;
         note.style.height = note.scrollHeight + "px";
-        note.children[0].style["white-space"] = "normal";
+        note.style.width = note.scrollWidth + "px";
+        note.children[0].style["white-space"] = "pre";
         target.parentNode.previousSibling.style.animation = "paper-save 1s linear";
         target.parentNode.style.height = "0px";
     }
