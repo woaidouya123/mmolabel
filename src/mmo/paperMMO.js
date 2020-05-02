@@ -76,11 +76,15 @@ class NormalMMo extends Component {
         target.style.transform="rotateZ(-5deg)";
         target.style["background-color"]="darkgray";
         target.style["border-radius"] = "5px";
+        target.children[0].style["white-space"] = "normal";
+        target.children[0].style["word-wrap"] = "break-word";
+        target.children[0].style["word-break"] = "break-all";
+        target.children[0].style["text-overflow"] = "initial";
         var self = this;
         var st = setTimeout(function(){
             self.props.finishIt(target,self.state._id);
             clearTimeout(st);
-        },500)
+        },1000)
         
     }
 

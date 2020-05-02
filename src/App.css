@@ -253,9 +253,10 @@
 }
 
 .label-paper:hover> div.paper-content > span {
-    white-space: pre;
+    white-space: normal;
     word-wrap: break-word;
     word-break: break-all;
+    text-overflow: initial;
 }
 
 .label-paper::before {
@@ -273,8 +274,8 @@
     border-radius: 5px;
 }
 .label-paper div.paper-content{
-    max-width: 200px;
-    width: fit-content;
+    /* max-width: 200px; */
+    width: 200px;
     height: 25px;
     line-height: 25px;
     background-color: yellowgreen;
